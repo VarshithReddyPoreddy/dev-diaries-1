@@ -186,6 +186,9 @@ export const ResetPasswordPage: React.FC = () => {
         // Show success state
         setSuccess(true);
         
+        // Store success flag for login page
+        localStorage.setItem('passwordResetSuccess', 'true');
+        
         // Sign out the user for security and redirect to login
         setTimeout(async () => {
           await supabase.auth.signOut();
