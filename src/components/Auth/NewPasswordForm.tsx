@@ -450,7 +450,7 @@ export const NewPasswordForm: React.FC<NewPasswordFormProps> = ({ onSuccess }) =
                   <ArrowRight className="h-4 w-4" />
                 </div>
               )}
-            </button>
+            </motion.button>
 
             {/* Footer */}
             <div className="text-center">
