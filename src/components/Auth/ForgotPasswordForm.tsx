@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, ArrowLeft, CheckCircle, AlertCircle, KeyRound } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import { ForgotPasswordVerificationForm } from './ForgotPasswordVerificationForm';
-import { PasswordResetForm } from './PasswordResetForm';
+import { NewPasswordForm } from './NewPasswordForm';
 
 interface ForgotPasswordFormData {
   email: string;
@@ -14,7 +14,7 @@ interface ForgotPasswordFormProps {
   onBack: () => void;
 }
 
-type Step = 'email' | 'verification' | 'passwordReset' | 'success';
+type Step = 'email' | 'verification' | 'newPassword' | 'success';
 
 export const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({ onBack }) => {
   const [currentStep, setCurrentStep] = useState<Step>('email');
@@ -64,7 +64,7 @@ export const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({ onBack }
   };
 
   const handleVerificationSuccess = () => {
-    setCurrentStep('passwordReset');
+    setCurrentStep('newPassword');
   };
 
   const handlePasswordResetSuccess = () => {
@@ -92,12 +92,11 @@ export const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({ onBack }
     );
   }
 
-  // Password reset step
-  if (currentStep === 'passwordReset') {
+  // New password step
+  if (currentStep === 'newPassword') {
     return (
-      <PasswordResetForm
+      <NewPasswordForm
         onSuccess={handlePasswordResetSuccess}
-        onBack={handleBackToVerification}
       />
     );
   }

@@ -151,6 +151,9 @@ export const NewPasswordForm: React.FC<NewPasswordFormProps> = ({ onSuccess }) =
           console.log('🔄 Signing out user to complete password reset...');
           await supabase.auth.signOut();
           
+          // Store success flag for login page
+          localStorage.setItem('passwordResetSuccess', 'true');
+          
           console.log('✅ Password reset completed successfully!');
           onSuccess();
         }, 2000);
@@ -447,7 +450,7 @@ export const NewPasswordForm: React.FC<NewPasswordFormProps> = ({ onSuccess }) =
                   <ArrowRight className="h-4 w-4" />
                 </div>
               )}
-            </motion.button>
+            </button>
 
             {/* Footer */}
             <div className="text-center">
